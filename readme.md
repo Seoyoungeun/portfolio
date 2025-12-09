@@ -1,7 +1,7 @@
 # 👋 서영은 | Backend Engineer (Spring Boot)
 ### **안 되는 이유를 추적해 서비스 안정성으로 연결하는 백엔드 개발자**
 
-[Email](mailto:0dmd@naver.com) · [GitHub](https://github.com/Seoyoungeun) · [Notion/Portfolio]([LINK]) · [Resume(PDF)]([LINK])
+[Email](mailto:0dmd@naver.com) · [GitHub](https://github.com/Seoyoungeun) · [Notion/Portfolio]([LINK])
 
 ---
 
@@ -28,10 +28,8 @@
   - DB 스키마 관리, 데이터 정합성 유지, 기능 구현에 맞춘 테이블/관계 관리
 - **Git / Notion**
   - 협업을 위한 이슈/명세/작업관리, 브랜치 기반 개발/충돌 해결
-
 - **Redis**
   - 프로젝트 단위 활용 경험(캐시/세션/토큰 등으로 확장 가능)
-  - 
 - **C/C++**
 
 ---
@@ -41,7 +39,7 @@
 
 ---
 
-# 🚀 1) RoboFlow — AI 판별 기반 부품 분류 + 실시간 모니터링 대시보드
+# 1) RoboFlow — AI 판별 기반 부품 분류 + 실시간 모니터링 대시보드
 - **기간**: 2025.10 ~ 2025.11 | **인원**: 6명
 - **프로젝트 요약**: 로봇/컨베이어벨트에서 부품을 확인하고, AI로 정상품 여부를 판단해 기준에 따라 분류하는 시스템
 - **내 역할**: **대시보드 담당(설계/구현/연동)**  
@@ -79,7 +77,7 @@
 
 ---
 
-# 🎯 2) FocusMate — 협업 기반 서비스(백엔드 API/DB 담당)
+# 2) FocusMate — 협업 기반 서비스(백엔드 API/DB 담당)
 - **기간**: 2025.08 ~ 2025.09 | **인원**: 5명
 - **내 역할**: **BE API 개발, DB 관리**
 - **(선택) 시연/Repo**: [링크 추가]
@@ -96,7 +94,7 @@
 
 ---
 
-# 🔧 3) AUTOSAR LED Blink — AUTOSAR vs Non-AUTOSAR 비교 구현 (S32K146)
+# 3) AUTOSAR LED Blink — AUTOSAR vs Non-AUTOSAR 비교 구현 (S32K146)
 - **기간**: 2024.07 ~ 2024.08
 - **Repo**: https://github.com/Seoyoungeun/autosar/tree/main
 
