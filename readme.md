@@ -34,7 +34,7 @@
 
 ---
 
-## 🧩 Featured Projects (최신순)
+## Featured Projects (최신순)
 > 핵심만 먼저 보여주고, 상세는 접어서 가독성을 확보했습니다.
 
 ---
