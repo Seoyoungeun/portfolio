@@ -1,27 +1,27 @@
-# 👋 서영은 | Backend Engineer (Spring Boot)
+# 서영은 | Backend Engineer (Spring Boot)
 ### **안 되는 이유를 추적해 서비스 안정성으로 연결하는 백엔드 개발자**
 
 [Email](mailto:0dmd@naver.com) · [GitHub](https://github.com/Seoyoungeun) · [Notion/Portfolio]([LINK])
 
 ---
 
-## 🔎 Profile
+## Profile
 - CS 기반(자료구조/알고리즘/운영체제 등) 위에서 **설계 → 구현 → 검증** 흐름으로 개발합니다.
 - 팀 프로젝트에서 “안 되는 이유”를 **재현/로그/근거**로 정리해 해결하고, **명세와 기준**으로 협업 효율을 올려왔습니다.
 - 실시간 데이터가 중요한 서비스에서 **임베디드 → 서버 → 대시보드** 흐름을 설계하고 연동한 경험이 있습니다.
 
 ---
 
-## 🎓 Education
+## Education
 - **삼성 청년 SW 아카데미(SSAFY)** | 2025.02 ~ 2025.12  
 - **경북대학교 컴퓨터학부(글로벌SW융합전공)** | 2018.03 ~ 2025.02  
 
-## 🌏 Experience
+## Experience
 - **HL만도 인도 인턴십** | 2024.07 ~ 2024.08  
 
 ---
 
-### ✅ Main
+### Main
 - **Java / Spring Boot**
   - REST API 설계/구현, 예외/검증 처리, 연동 이슈 트러블슈팅
 - **MySQL**
