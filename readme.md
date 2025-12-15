@@ -1,5 +1,4 @@
-# 서영은 | Backend Engineer (Spring Boot)
-### **안 되는 이유를 추적해 서비스 안정성으로 연결하는 백엔드 개발자**
+# 서영은 | Developer
 
 [Email](mailto:0dmd@naver.com) · [GitHub](https://github.com/Seoyoungeun) · [Notion/Portfolio]([LINK])
 
