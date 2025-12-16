@@ -134,10 +134,8 @@
 * 신청 내역 확인: **RecyclerView** 기반 목록 표시(강좌/시설 신청 내역)
 * 지도: **Google Maps SDK**로 센터 위치 표시
 
----
-
-#### 문제 해결 과정 (Problem → Fix → Result)
-
+<details>
+<summary><b>문제 해결 과정 (Problem → Cause → Fix → Result)</b></summary>
 * **Problem 1**: 여러 사용자가 사용할 때 신청 내역이 섞일 위험
 
   * **Fix**: Auth의 `uid`를 기준 키로 삼아 `usrs/{uid}/...` 구조로 데이터 분리
@@ -147,8 +145,7 @@
 
   * **Fix**: Material Date Picker로 날짜 입력을 통제하고 과거 날짜 선택을 제한
   * **Result**: 입력 오류 감소 및 신청 데이터 일관성 강화
-
----
+</details>
 
 #### 배운 점
 
