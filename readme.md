@@ -88,21 +88,58 @@
 - API 연동 이슈를 줄이기 위해 API 명세서의 중요성을 경험
 - SMTP 적용을 통해 외부 시스템 연동의 기본(환경설정/예외/보안)을 학습
 
----
+## 3) AUTOSAR LED Blink — AUTOSAR vs Non-AUTOSAR 비교 구현 (S32K146)
 
-# 3) AUTOSAR LED Blink — AUTOSAR vs Non-AUTOSAR 비교 구현 (S32K146)
-- **기간**: 2024.07 ~ 2024.08
-- **Repo**: https://github.com/Seoyoungeun/autosar/tree/main
+기간: 2024.07 ~ 2024.08
+Repo: [https://github.com/Seoyoungeun/autosar/tree/main](https://github.com/Seoyoungeun/autosar/tree/main)
 
-### 프로젝트 요약
-- 차량 SW 환경에서 **AUTOSAR / Non-AUTOSAR 방식**으로 LED Blinking 기능을 구현·비교하며,
-  설정/빌드/검증 흐름을 학습
+프로젝트 요약: 차량 SW 환경에서 **Non-AUTOSAR(레지스터 직접 제어)** 방식과 **AUTOSAR(표준화된 설정/생성 기반)** 방식으로 LED Blinking을 구현·비교하며, “설정 → 생성 → 구현 → 검증” 개발 흐름을 학습
+(목표: 자동차 회사마다 다른 개발 규격을 **AUTOSAR 표준으로 통일**하는 이유를 이해하고 적용)
+
+내 역할: 제공받은 샘플 코드를 기반으로 **동작 요구사항에 맞게 코드/설정을 수정**하고, Non-AUTOSAR ↔ AUTOSAR 구현 차이를 비교 정리
+
+* 요구사항: **스위치를 한 번 누르면(토글) LED가 5초 간격으로 점멸 시작**, 다시 누르면 점멸 정지
+
+### Tech
+
+* HW: NXP S32K146
+* Non-AUTOSAR: C(레지스터 직접 제어 기반 샘플 코드 수정)
+* AUTOSAR: **EB tresos**(Port/Dio 설정 → Generate) + 샘플 코드 수정
+* Build/Run: make 기반 빌드 및 보드 실행/검증
+  
+### 핵심 구현
+
+* **Non-AUTOSAR**
+
+  * 스위치 입력을 디바운싱/상태 전환 기준으로 처리하여 **토글 상태(state)** 를 유지
+  * 토글 ON 상태에서 **5초 주기 점멸 로직**이 동작하도록 샘플 코드 수정(주기적 LED 토글)
+
+* **AUTOSAR**
+
+  * EB tresos에서 Port/Dio 설정으로 LED/Switch 핀을 매핑하고 Generate 수행
+  * 생성된 구조 위에서 스위치 입력에 따라 **토글 상태(state) 전환** 및 5초 주기 점멸 로직이 동작하도록 샘플 코드 수정
+  * “표준 설정/생성 + 애플리케이션 로직”으로 역할이 분리되는 구조를 경험
+
+<details>
+<summary><b>문제 해결 과정 (Problem → Cause → Fix → Result)</b></summary>
+**Problem 1:** AUTOSAR는 코드만 수정해서는 동작 구조를 이해하기 어렵고, 설정/생성 단계 누락 시 정상 동작하지 않음
+
+* **Cause:** AUTOSAR는 “코드 작성” 이전에 **설정(Configure) → 생성(Generate)** 단계가 필수이며, 이 산출물이 런타임 동작을 좌우
+* **Fix:** EB tresos에서 핀/모듈 설정을 먼저 고정 → Generate → 샘플 코드에서 토글/주기 로직 반영 → 실행으로 흐름을 단계화
+* **Result:** AUTOSAR의 핵심이 “코드”가 아니라 **표준 설정/생성 파이프라인**임을 체감하고 재현 가능한 개발 절차를 확보
+
+**Problem 2:** Non-AUTOSAR는 구현이 빠르지만 회사/프로젝트마다 코드 구조와 규격이 달라 재사용/협업 비용이 증가할 수 있음
+
+* **Fix:** AUTOSAR 표준 구조를 기준으로 동일 요구사항(토글 + 5초 점멸)을 구현·비교하며, **규격 통일의 필요성**을 요구사항 구현과 함께 정리
+* **Result:** 자동차 SW에서 AUTOSAR는 기술 선택을 넘어 **조직/회사 간 표준화로 유지보수성을 확보**하는 전략임을 개발 관점에서 이해
+</details>
 
 ### 배운 점
-- AUTOSAR는 코드만이 아니라 **설정(Configure) → 생성(Generate) → Runnable 구현 → 검증** 흐름 이해가 핵심
-- 임베디드는 “동작”보다 **재현 가능한 검증 절차**가 품질을 만든다는 점을 체감
 
----
+* AUTOSAR는 코드 수정만이 아니라 **설정(Configure) → 생성(Generate) → 로직 구현 → 검증** 흐름이 핵심
+* 임베디드 품질은 “동작”이 아니라, 실패 원인을 단계별로 좁히는 **재현 가능한 검증 절차**에서 결정됨
+* 표준화(AUTOSAR)는 회사마다 다른 규격을 맞춰 **협업/재사용/유지보수 비용을 줄이기 위한 기반**임을 체감
+
 
 # 4) KNU Mobile App — 경북대 시설 대여/관리(모바일)
 
