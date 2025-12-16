@@ -103,23 +103,57 @@
 - 임베디드는 “동작”보다 **재현 가능한 검증 절차**가 품질을 만든다는 점을 체감
 
 ---
-#  4) KNU Mobile App — 경북대 시설 대여/관리(모바일)
-- **기간**: 2023.09 ~ 2023.11 | **인원**: 5명  
-- **Repo**: https://github.com/KNUMobileTeamProject/KNUSportsCenter  
-- **역할/기여도**: **Firebase Authentication 인증 관리**  
-- **기술**: Kotlin(Android), Firebase Authentication  
+
+# 4) KNU Mobile App — 경북대 시설 대여/관리(모바일)
+
+* **기간**: 2023.09 ~ 2023.11 | **인원**: 5명
+* **Repo**: [https://github.com/KNUMobileTeamProject/KNUSportsCenter](https://github.com/KNUMobileTeamProject/KNUSportsCenter)
+* **역할/기여도**: **Firebase Authentication 기반 인증(회원가입/로그인) + UID 기반 사용자 데이터 분리 설계/연동**, 일부 화면 흐름 구성
+* **기술**: Kotlin(Android), Firebase Authentication, Firebase Realtime Database, RecyclerView, Material Date Picker, Google Maps SDK
 
 #### 개요
-- 경북대학교 시설 대여/관리를 돕는 모바일 앱으로, 사용자가 “필요한 정보를 빠르게 확인”할 수 있도록 사용자 흐름 중심으로 기능을 구성했습니다.
+
+* 경북대학교 체육진흥센터(시설/강좌) 정보를 조회하고, 사용자가 **강좌 신청 / 시설 이용 신청**을 진행한 뒤 **신청 내역을 확인**할 수 있는 모바일 앱입니다.
+* “필요한 정보를 빠르게 확인”할 수 있도록 사용자 흐름 중심으로 화면/기능을 구성했습니다.
 
 ---
 
 #### 내가 맡은 핵심
-- **Firebase Authentication** 기반 로그인/인증 연동 구현
-- 인증 상태를 기반으로 사용자 기능 확장(예: 사용자별 접근/기능 분기) 가능성을 고려한 구조 정리
+
+* **Firebase Authentication** 기반 회원가입/로그인 연동 구현(입력 검증 포함)
+* 인증된 사용자 식별자인 **UID를 기준으로 데이터가 분리 저장**되도록 구조 설계(`usrs/{uid}/...`)
+* 사용자별 **신청 내역(applied_courses / applied_facilities)**이 섞이지 않도록 초기 노드 생성 및 연동
+* 로그인 사용자만 접근 가능하도록 일부 **화면 진입/전환 흐름** 구성
+
+---
+
+#### 핵심 구현
+
+* 강좌 신청: 사용자 신청 리스트 저장 + **중복 신청 방지** + 신청 인원(StudentCount) 갱신
+* 시설 이용 신청: **Material Date Picker** 기반 날짜 선택(과거 날짜 제한) + 사용자 신청 리스트 저장 + **중복 신청 방지**
+* 신청 내역 확인: **RecyclerView** 기반 목록 표시(강좌/시설 신청 내역)
+* 지도: **Google Maps SDK**로 센터 위치 표시
+
+---
+
+#### 문제 해결 과정 (Problem → Fix → Result)
+
+* **Problem 1**: 여러 사용자가 사용할 때 신청 내역이 섞일 위험
+
+  * **Fix**: Auth의 `uid`를 기준 키로 삼아 `usrs/{uid}/...` 구조로 데이터 분리
+  * **Result**: 사용자별 신청 내역이 명확히 분리되어 개인화/기록/권한 확장 기반 확보
+
+* **Problem 2**: 시설 예약에서 잘못된 입력(과거 날짜 등)으로 데이터 품질이 깨질 수 있음
+
+  * **Fix**: Material Date Picker로 날짜 입력을 통제하고 과거 날짜 선택을 제한
+  * **Result**: 입력 오류 감소 및 신청 데이터 일관성 강화
 
 ---
 
 #### 배운 점
-- 모바일 환경에서는 네트워크 요청이 항상 안정적이지 않기 때문에, **지연/실패를 고려한 예외 처리**가 사용자 경험을 좌우한다는 점을 체감했습니다.
-- 인증 연동을 통해 **사용자 기반 기능(권한/개인화/기록 관리 등)**으로 확장할 수 있는 기반을 확인했습니다.
+
+* 인증(UID)을 기준으로 데이터 구조를 먼저 잡으면, 이후 **개인화/기록/권한 관리** 기능으로 확장하기 쉬움
+* 모바일에서는 기능 구현뿐 아니라 **입력 통제/예외 흐름 설계**가 UX 품질을 좌우함
+
+
+---
